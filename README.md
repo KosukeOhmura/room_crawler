@@ -25,6 +25,8 @@ go run cli/main.go
 ```sh
 go mod download
 go run main.go
+# curl -X POST localhost:8080
+# ok
 ```
 
 Docker コンテナとして起動する:
@@ -32,12 +34,13 @@ Docker コンテナとして起動する:
 ```sh
 make docker-build
 docker run --rm room-crawler --env PORT=8080
-curl -X POST localhost:8080
+# curl -X POST localhost:8080
 ```
 
 ## 動作に必要な環境変数
 
 - `ROOMS_URL` (必須): クロールする対象の [不動産ジャパン](https://www.fudousan.or.jp/) の物件検索結果 URL。例: https://www.fudousan.or.jp/property/rent/13/station/list?wst%5B%5D=L8BB8BBDL
 - `SLACK_WEBHOOK_URL` (必須): 通知を受ける Slack の Webhook URL。
-- `GOOGLE_CREDENTIALS_JSON` (必須): スプレッドシートへのアクセス可能な Google サービスアカウントの credential。[参考](https://cloud.google.com/iam/docs/creating-managing-service-accounts)
+- `SPREADSHEET_ID` (必須): データベースとして使用する Google スプレッドシートの ID。
+- `GOOGLE_CREDENTIALS_JSON` (必須): 該当の Google スプレッドシートへのアクセスが可能な Google サービスアカウントの credential。参考: [サービス アカウントの作成と管理](https://cloud.google.com/iam/docs/creating-managing-service-accounts)
 - `PORT` (Web サーバーとして動かす場合は必要): Web サーバーが Listen するポート番号。

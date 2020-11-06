@@ -39,14 +39,14 @@ type (
 )
 
 const (
-	spreadsheetID         = "1670XoIdjAaSToy11Zat-ZmK0BivyaUYra-Cbavd22WQ"
 	spreadsheetSheetRange = "sheet1!A2:E100"
 )
 
 var (
 	roomsURL              = os.Getenv("ROOMS_URL")
+	spreadsheetID         = os.Getenv("SPREADSHEET_ID")
 	slackWebhookURL       = os.Getenv("SLACK_WEBHOOK_URL")
-	googleCredentialsJson = os.Getenv("GOOGLE_CREDENTIALS_JSON")
+	googleCredentialsJSON = os.Getenv("GOOGLE_CREDENTIALS_JSON")
 )
 
 // Execute execute crawling
@@ -328,6 +328,6 @@ func notifySlack(payload []byte) error {
 func getSheetService() (*sheets.Service, error) {
 	return sheets.NewService(
 		context.Background(),
-		option.WithCredentialsJSON([]byte(googleCredentialsJson)),
+		option.WithCredentialsJSON([]byte(googleCredentialsJSON)),
 		option.WithScopes("https://www.googleapis.com/auth/spreadsheets"))
 }
